@@ -11,6 +11,10 @@
  *  An InfoBox also fires the same events as a <tt>google.maps.InfoWindow</tt>.
  */
 
+/**
+  * @version 1.1.13 [April 28, 2015] updated with a closeBoxZIndex setting.
+ */
+
 /*!
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -94,6 +98,7 @@ function InfoBox(opt_opts) {
   this.boxClass_ = opt_opts.boxClass || "infoBox";
   this.boxStyle_ = opt_opts.boxStyle || {};
   this.closeBoxMargin_ = opt_opts.closeBoxMargin || "2px";
+  this.closeBoxZIndex_ = opt_opts.closeBoxZIndex || "auto";
   this.closeBoxURL_ = opt_opts.closeBoxURL || "http://www.google.com/intl/en_us/mapfiles/close.gif";
   if (opt_opts.closeBoxURL === "") {
     this.closeBoxURL_ = "";
@@ -254,6 +259,7 @@ InfoBox.prototype.getCloseBoxImg_ = function () {
     img += " position: relative;"; // Required by MSIE
     img += " cursor: pointer;";
     img += " margin: " + this.closeBoxMargin_ + ";";
+    img += " z-index: " + this.closeBoxZIndex_ + ";";
     img += "'>";
   }
 
@@ -550,6 +556,10 @@ InfoBox.prototype.setOptions = function (opt_opts) {
   if (typeof opt_opts.closeBoxMargin !== "undefined") {
 
     this.closeBoxMargin_ = opt_opts.closeBoxMargin;
+  }
+  if (typeof opt_opts.closeBoxZIndex !== "undefined") {
+
+    this.closeBoxZIndex_ = opt_opts.closeBoxZIndex;
   }
   if (typeof opt_opts.closeBoxURL !== "undefined") {
 
